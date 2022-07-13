@@ -10,25 +10,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Car car1 = new Car { BrandId = 2, ColorId = 1, DailyPrice = 1000000, CarName = "TOGG", ModelYear = 2022 };
-            Car car2 = new Car { BrandId = 4, ColorId = 2, DailyPrice = 15000, CarName = "Klasik Araba", ModelYear = 2022 };
-            Car car3 = new Car { BrandId = 2, ColorId = 5, DailyPrice = 550000, CarName = "Kartal", ModelYear = 1990 };
+            //CarCRUDTest();
+        }
 
+        private static void CarCRUDTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
-            
-            //carManager.Add(car1);
-            //carManager.Add(car2);
-            //carManager.Add(car3);
+            carManager.Add(new Car { BrandId = 2, ColorId = 2, CarName = "Mustang", ModelYear = 2015, DailyPrice = 2000000 });
+            carManager.Update(new Car { Id = 1002, BrandId = 4, ColorId = 2, CarName = "Mustang", ModelYear = 2015, DailyPrice = 2000000 });
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetCarDetail())
             {
-                Console.WriteLine(car.CarName);
-            }
-            Console.WriteLine("-----------------------------");
-
-            foreach (var car in carManager.GetCarsByColorId(2))
-            {
-                Console.WriteLine(car.CarName);
+                Console.WriteLine("{0} / {1} / {2} / {3}", car.CarName, car.BrandName, car.ColorName, car.DailyPrice);
             }
         }
     }
