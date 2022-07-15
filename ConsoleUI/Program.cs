@@ -19,9 +19,14 @@ namespace ConsoleUI
             //CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             //customerManager.Add(new Customer {UserId=1002, CompanyName="Kücük Holding" });
 
-            //RentalManager rental = new RentalManager(new EfRentalDal());
-            //Rental rental1 = new Rental { CarId = 2, CustomerId = 1, RentDate = new DateTime(2022, 07, 15), ReturnDate = new DateTime(2022, 07, 22) };
+            RentalManager rental = new RentalManager(new EfRentalDal());
+            Rental rental1 = new Rental { CarId = 2, CustomerId = 1, RentDate = new DateTime(2022, 07, 15), ReturnDate = new DateTime(2022, 07, 22) };
             //rental.Add(rental1);
+
+            var result = rental.Get(1);
+            Console.WriteLine(result.Data.RentDate);
+
+
         }
 
         private static void UserTest()
