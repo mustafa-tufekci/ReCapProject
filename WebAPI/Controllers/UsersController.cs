@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,68 +10,91 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        IUserService _userService;
+        private IUserService _userService;
 
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
+        // [HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var result = _userService.GetAll();           REFACTOR 
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("GetByUserEmail")]
+        public IActionResult GetByUserEmail(string email)
         {
-            //Dependency chain
-            var result = _userService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            var result = _userService.GetByMail(email);
+            //if (result.Success)
+            //{
+            //}
+            return Ok(result);
+            //return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _userService.Get(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+        // [HttpGet]
+        //public IActionResult GetByCustomerId(int id)
+        //{
+        //    var result = _userService.GetByCustomerId(id);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
-            return BadRequest(result);
-        }
 
-        [HttpPost("add")]
-        public IActionResult Add(User user)
-        {
-            var result = _userService.Add(user);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpPost]
+        //public IActionResult UserAdd([FromBody] User user)
+        //{
+        //    var result = _userService.AddUser(user);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result.Message);
+        //}
 
-        [HttpPost("update")]
-        public IActionResult Update(User user)
-        {
-            var result = _userService.Update(user);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpPost]
+        //public IActionResult UserUpdate([FromBody] User user)
+        //{
+        //    var result = _userService.Update(user);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result.Message);
+        //}
 
-        [HttpPost("delete")]
-        public IActionResult Delete(User user)
-        {
-            var result = _userService.Delete(user);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+
+
+        //[HttpPost]
+        //public IActionResult CustomerDelete([FromBody] User user)
+        //{
+        //    var result = _userService.Delete(user);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result.Message);
+        //}
+
+        //[HttpPost]
+        //public IActionResult ChangeUserPassword(ChangePasswordDto changeUserPassword)
+        //{
+        //    var result = _userService.ChangeUserPassword(changeUserPassword);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+
+        //    return BadRequest(result);
+        //}
     }
 }

@@ -29,19 +29,19 @@ namespace ConsoleUI
 
         }
 
-        private static void UserTest()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
-            //userManager.Add(new User { FirstName="Mustafa",LastName="Tüfekçi",Email="mustafa.tufekci@gmail.com", Password="qwertyklavye12345"});
-            userManager.Add(new User { FirstName = "Ensar", LastName = "Tüfekçi", Email = "ensar.tufekci@gmail.com", Password = "123456789" });
-            userManager.Delete(new User { Id = 1, FirstName = "Mustafa", LastName = "Tüfekçi", Email = "mustafa.tufekci@gmail.com", Password = "qwertyklavye12345" });
-            var result = userManager.GetAll();
-            Console.WriteLine(result.Message);
-            foreach (var user in result.Data)
-            {
-                Console.WriteLine(user.FirstName + "/" + user.LastName + "/" + user.Email + "/" + user.Password);
-            }
-        }
+        //private static void UserTest()
+        //{
+        //    UserManager userManager = new UserManager(new EfUserDal());
+        //    //userManager.Add(new User { FirstName="Mustafa",LastName="Tüfekçi",Email="mustafa.tufekci@gmail.com", Password="qwertyklavye12345"});
+        //    userManager.Add(new User { FirstName = "Ensar", LastName = "Tüfekçi", Email = "ensar.tufekci@gmail.com", Password = "123456789" });
+        //    userManager.Delete(new User { Id = 1, FirstName = "Mustafa", LastName = "Tüfekçi", Email = "mustafa.tufekci@gmail.com", Password = "qwertyklavye12345" });
+        //    var result = userManager.GetAll();
+        //    Console.WriteLine(result.Message);
+        //    foreach (var user in result.Data)
+        //    {
+        //        Console.WriteLine(user.FirstName + "/" + user.LastName + "/" + user.Email + "/" + user.Password);
+        //    }
+        //}
 
         private static void CarCRUDTest()
         {
