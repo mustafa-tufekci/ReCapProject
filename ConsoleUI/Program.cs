@@ -23,8 +23,9 @@ namespace ConsoleUI
             Rental rental1 = new Rental { CarId = 2, CustomerId = 1, RentDate = new DateTime(2022, 07, 15), ReturnDate = new DateTime(2022, 07, 22) };
             //rental.Add(rental1);
 
-            var result = rental.Get(1);
-            Console.WriteLine(result.Data.RentDate);
+            //var result = rental.Get(1);
+            //Console.WriteLine(result.Data.RentDate);
+            CarCRUDTest();
 
 
         }
@@ -49,13 +50,13 @@ namespace ConsoleUI
             //carManager.Add(new Car { BrandId = 2, ColorId = 2, CarName = "Mustang", ModelYear = 2015, DailyPrice = 2000000 });
             //carManager.Update(new Car { Id = 1002, BrandId = 4, ColorId = 2, CarName = "Mustang", ModelYear = 2015, DailyPrice = 2000000 });
 
-            var result = carManager.GetCarDetail();
+            var result = carManager.GetCarDetails();
 
             if (result.Success)
             {
                 foreach (var car in result.Data)
                 {
-                    Console.WriteLine("{0} / {1} / {2} / {3}", car.CarName, car.BrandName, car.ColorName, car.DailyPrice);
+                    Console.WriteLine("{0} / {1} / {2} / {3} / {4}", car.ModelName, car.BrandName, car.ColorName, car.DailyPrice, car.ModelYear);
                 }
             }
             else

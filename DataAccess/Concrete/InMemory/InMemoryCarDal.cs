@@ -17,9 +17,9 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>()
             {
-                new Car{Id=1, BrandId=1, ColorId=3, ModelYear=2020, DailyPrice=20000, CarName="Sport Car"},
-                new Car{Id=2, BrandId=2, ColorId=3, ModelYear=2018, DailyPrice=30000, CarName="Aston Martin" },
-                new Car{Id=3, BrandId=3, ColorId=3, ModelYear=2022, DailyPrice=40000, CarName="Ferrari" }
+                new Car{Id=1, BrandId=1, ColorId=3, ModelYear=2020, DailyPrice=20000, ModelName="Sport Car"},
+                new Car{Id=2, BrandId=2, ColorId=3, ModelYear=2018, DailyPrice=30000, ModelName="Aston Martin" },
+                new Car{Id=3, BrandId=3, ColorId=3, ModelYear=2022, DailyPrice=40000, ModelName="Ferrari" }
             };
         }
         public void Add(Car car)
@@ -64,14 +64,20 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Car car)
         {
             Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
+            carToUpdate.ModelName = car.ModelName;
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.CarName = car.CarName;
+            carToUpdate.Description = car.Description;
         }
     }
 }

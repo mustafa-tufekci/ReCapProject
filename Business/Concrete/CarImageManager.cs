@@ -37,10 +37,17 @@ namespace Business.Concrete
             _carImageDal.Add(carImage);
             return new SuccessResult();
         }
+        public IResult Update(IFormFile file, CarImage carImage)
+        {
+            carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
+            _carImageDal.Update(carImage);
+            return new SuccessResult();
+        }
 
         public IResult Delete(CarImage carImage)
         {
             _carImageDal.Delete(carImage);
+            _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
             return new SuccessResult();
         }
 
@@ -51,18 +58,12 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>();
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
         public IDataResult<List<CarImage>> GetImageByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(i => i.Id == carId));
-        }
-
-        public IResult Update(IFormFile file, CarImage carImage)
-        {
-            _carImageDal.Update(carImage);
-            return new SuccessResult();
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(i => i.CarId == carId));
         }
 
         private IResult CheckIfCarImagesLimitExceded(int carId)

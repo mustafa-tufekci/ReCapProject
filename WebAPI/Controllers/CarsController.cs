@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         public IActionResult GetCarDetail()
         {
             //Dependency chain
-            var result = _carService.GetCarDetail();
+            var result = _carService.GetCarDetails();
             if (result.Success)
             {
                 return Ok(result);
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcarsbybrandid")]
+        [HttpGet("getbybrandid")]
         public IActionResult GetCarsByBrandId(int brandId)
         {
             var result = _carService.GetCarsByBrandId(brandId);
@@ -49,13 +49,37 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest(result); 
         }
 
-        [HttpGet("getcarsbycolordid")]
+        [HttpGet("getbycolordid")]
         public IActionResult GetCarsByColorId(int colorId)
         {
             var result = _carService.GetCarsByColorId(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycarid")]
+        public IActionResult GetCarsDetailsByCarId(int carId)
+        {
+            var result = _carService.GetCarsDetailsByCarId(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycolordidandbrandid")]
+        public IActionResult GetCarsByColorIdAndBrandId(int colorId,int brandId)
+        {
+            var result = _carService.GetCarsByBrandIdAndColorId(colorId,brandId);
             if (result.Success)
             {
                 return Ok(result);
