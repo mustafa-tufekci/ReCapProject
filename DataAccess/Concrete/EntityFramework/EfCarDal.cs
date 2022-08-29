@@ -41,5 +41,6 @@ namespace DataAccess.Concrete.EntityFramework
                     : result.Where(filter).ToList();
             }
         }
+
     }
 }
